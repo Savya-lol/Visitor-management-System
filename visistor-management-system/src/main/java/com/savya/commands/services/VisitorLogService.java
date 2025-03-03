@@ -8,8 +8,15 @@ public class VisitorLogService {
     public void displayVisitorLogs() {
         System.out.println("Visitor Logs:");
         visitorLogDAO.findAll().forEach(visitorLog -> {
-            System.out.println(visitorLog.getVisitor().getName() + "with contact" +
-                    visitorLog.getVisitor().getContact() + " checked in at " + visitorLog.getCheckinTime());
+            String checkoutInfo = visitorLog.getCheckoutTime() != null ? 
+                " and checked out at " + visitorLog.getCheckoutTime() : 
+                " (still checked in)";
+            
+            System.out.printf("Visitor: %s - Contact: %s - Checked in: %s%s%n",
+                visitorLog.getVisitor().getName(),
+                visitorLog.getVisitor().getContact(),
+                visitorLog.getCheckinTime(),
+                checkoutInfo);
         });
     }
 

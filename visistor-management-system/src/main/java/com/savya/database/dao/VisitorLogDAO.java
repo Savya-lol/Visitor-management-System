@@ -13,8 +13,8 @@ public class VisitorLogDAO extends DatabaseServiceImpl<VisitorLog> {
 
     public VisitorLog getVisitorLogByVisitorId(Visitor visitor) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM VisitorLog WHERE visitorId = :visitorId", VisitorLog.class)
-                    .setParameter("visitorId", visitor.getId())
+            return session.createQuery("FROM VisitorLog vl WHERE vl.visitor = :visitor", VisitorLog.class)
+                    .setParameter("visitor", visitor)
                     .uniqueResult();
         }
     }

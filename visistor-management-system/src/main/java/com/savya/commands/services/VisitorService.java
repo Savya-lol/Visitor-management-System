@@ -34,6 +34,10 @@ public class VisitorService {
             registerVisitor();
             return;
         }
+        if (visitorLogDAO.getVisitorLogByVisitorId(existingVisitor) != null) {
+            System.out.println("Visitor has already checked in");
+            return;
+        }
         VisitorLog visitorLog = new VisitorLog(existingVisitor, LocalDateTime.now());
         visitorLogDAO.save(visitorLog);
         System.out.println("Visitor checked in successfully");
