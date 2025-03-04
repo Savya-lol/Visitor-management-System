@@ -1,8 +1,8 @@
 package com.savya.commands.admin;
 
 import com.savya.commands.Command;
-import com.savya.commands.services.AdminService;
 import com.savya.rbac.Role;
+import com.savya.services.AdminService;
 
 public class ListReceptionsitsCommand extends Command {
     private AdminService adminService;

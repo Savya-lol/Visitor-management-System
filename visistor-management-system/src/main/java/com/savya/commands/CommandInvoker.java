@@ -14,12 +14,13 @@ import com.savya.commands.admin.UpdateReceptionistCommand;
 import com.savya.commands.common.LogOutCommand;
 import com.savya.commands.receptionist.CheckInVisitorCommand;
 import com.savya.commands.receptionist.CheckOutVisitorCommand;
+import com.savya.commands.receptionist.DeleteVisitorCommand;
 import com.savya.commands.receptionist.DisplayVisitorLogsCommand;
 import com.savya.commands.receptionist.RegisterVisitorCommand;
-import com.savya.commands.services.AdminService;
-import com.savya.commands.services.VisitorLogService;
-import com.savya.commands.services.VisitorService;
 import com.savya.rbac.Role;
+import com.savya.services.AdminService;
+import com.savya.services.VisitorLogService;
+import com.savya.services.VisitorService;
 
 public class CommandInvoker {
     private List<Command> registeredCommands = new ArrayList<>();
@@ -33,6 +34,7 @@ public class CommandInvoker {
         addCommand(new CheckInVisitorCommand("Check In Visitor", visitorService, Role.RECEPTIONIST));
         addCommand(new CheckOutVisitorCommand("Check Out Visitor", visitorService, Role.RECEPTIONIST));
         addCommand(new DisplayVisitorLogsCommand("Display Visitor Logs", visitorLogService, Role.RECEPTIONIST));
+        addCommand(new DeleteVisitorCommand("Delete Visitor", visitorService, Role.RECEPTIONIST));
 
         addCommand(new ListReceptionsitsCommand("List Receptionists", adminService, Role.ADMIN));
         addCommand(new CreateReceptionistCommand("Create Receptionist", adminService, Role.ADMIN));

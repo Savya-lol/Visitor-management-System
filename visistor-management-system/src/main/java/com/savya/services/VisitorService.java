@@ -1,4 +1,4 @@
-package com.savya.commands.services;
+package com.savya.services;
 
 import java.time.LocalDateTime;
 
@@ -9,6 +9,7 @@ import com.savya.database.entities.VisitorLog;
 import com.savya.utilities.InputManager;
 
 public class VisitorService {
+
     private final VisitorDAO visitorDAO = new VisitorDAO();
     private final VisitorLogDAO visitorLogDAO = new VisitorLogDAO();
 
@@ -24,14 +25,14 @@ public class VisitorService {
 
         Visitor visitor = new Visitor(name, contact, purpose);
         visitorDAO.save(visitor);
-        System.out.println("Visitor registered successfully!");
+        System.out.println("Visitor registered successfully");
     }
 
     public void checkInVisitor() {
         String contact = InputManager.getString("Enter visitor's contact: ");
         Visitor existingVisitor = getVisitorByContact(contact);
         if (existingVisitor == null) {
-            registerVisitor();
+            System.out.println("Visitor not found");
             return;
         }
         if (visitorLogDAO.getVisitorLogByVisitorId(existingVisitor) != null) {
@@ -58,6 +59,30 @@ public class VisitorService {
         visitorLog.setCheckoutTime(LocalDateTime.now());
         visitorLogDAO.update(visitorLog);
         System.out.println("Visitor checked out successfully");
+    }
+
+    public void listVisitors() {
+        System.out.println("Visitors:");
+        System.out.println("id\tName\tContact\tPurpose");
+        visitorDAO.getAllRecords().forEach(visitor -> {
+            System.out.println(visitor.getId() + "\t" + visitor.getName() + "\t" + visitor.getContact() + "\t" + visitor.getPurpose());
+        });
+    }
+
+    public void deleteVisitor() {
+        listVisitors();
+        String contact = InputManager.getString("Enter the contact of visitor to delete: ");
+        Visitor existingVisitor = getVisitorByContact(contact);
+        if (existingVisitor == null) {
+            System.out.println("Visitor not found");
+            return;
+        }
+        VisitorLog visitorLog = visitorLogDAO.getVisitorLogByVisitorId(existingVisitor);
+        if (visitorLog != null) {
+            visitorLogDAO.delete(visitorLog);
+        }
+        visitorDAO.delete(existingVisitor);
+        System.out.println("Visitor deleted successfully");
     }
 
     public Visitor getVisitorByContact(String contact) {

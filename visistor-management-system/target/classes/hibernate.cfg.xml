@@ -13,10 +13,10 @@
         <property name="hibernate.connection.pool_size">5</property>
 
         <!-- Show SQL Queries in Console -->
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
 
         <!-- Format SQL Output -->
-        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.format_sql">false</property>
 
         <!-- Entity Mapping - Updated to match your actual entity classes -->
         <mapping class="com.savya.database.entities.User" />

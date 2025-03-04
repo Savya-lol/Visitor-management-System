@@ -1,8 +1,8 @@
 package com.savya.commands.admin;
 
 import com.savya.commands.Command;
-import com.savya.commands.services.VisitorLogService;
 import com.savya.rbac.Role;
+import com.savya.services.VisitorLogService;
 
 public class ClearVisitorLogsCommand extends Command {
     private VisitorLogService visitorLogService;

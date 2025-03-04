@@ -1,4 +1,4 @@
-package com.savya.commands.services;
+package com.savya.services;
 
 import com.savya.database.dao.VisitorLogDAO;
 
