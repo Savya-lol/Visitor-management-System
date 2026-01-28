@@ -1,104 +1,98 @@
 # Visitor Management System
 
-A Java-based application for managing visitors in an organization with role-based access control.
+A Java-based application for managing visitors in an organization, featuring role-based access control (Admin and Receptionist) and a command-driven interface.
 
 ## Overview
 
-This Visitor Management System enables organizations to efficiently track and manage visitors. It provides different functionality based on user roles (Admin and Receptionist) and features a command-driven interface.
+The Visitor Management System helps organizations track and manage visitors efficiently. Functionality is provided based on the logged-in user’s role:
+
+* **Admin**: Manage receptionist accounts and system-level data.
+* **Receptionist**: Register and manage visitor entries and logs.
 
 ## Features
 
-- **User Authentication:** Secure login system with password hashing.
-- **Role-Based Access Control (RBAC):**
-  - **Admin Features:**
-    - Create, update, and delete receptionists.
-    - View list of all receptionists.
-    - Clear all visitor logs.
-  - **Receptionist Features:**
-    - Register new visitors.
-    - Check-in and check-out visitors.
-    - Display visitor logs.
-    - Delete visitor records.
+### Authentication & Security
+
+* **User authentication** with secure password storage.
+* **Password hashing** using **PBKDF2 with HMAC SHA-256**, including unique salts and configurable iterations.
+
+### Role-Based Access Control (RBAC)
+
+#### Admin
+
+* Create, update, and delete receptionist users.
+* View all receptionists.
+* Clear all visitor logs.
+
+#### Receptionist
+
+* Register new visitors.
+* Check-in and check-out visitors.
+* View visitor logs.
+* Delete visitor records.
 
 ## Technical Architecture
 
 ### Design Patterns
 
-- **Command Pattern:** Implements various commands for different user actions.
-- **Data Access Object (DAO):** Separates database operations from business logic.
-- **Strategy Pattern:** Used for sorting algorithms.
+* **Command Pattern**: Encapsulates user actions as commands.
+* **DAO (Data Access Object) Pattern**: Separates persistence logic from business logic.
+* **Strategy Pattern**: Used for pluggable sorting algorithms.
 
-### Technologies Used
+### Tech Stack
 
-- Java 17
-- Hibernate ORM for database operations
-- SQLite database
-- Maven for dependency management
+* **Java 17**
+* **Hibernate ORM**
+* **SQLite**
+* **Maven**
 
-### Database Schema
+## Database Schema
 
 The system uses three main entities:
 
-- **User:** Stores system users (admin and receptionists)
-- **Visitor:** Stores visitor information
-- **VisitorLog:** Tracks visitor check-in/check-out activities
+* **User**: Stores system users (Admin and Receptionists).
+* **Visitor**: Stores visitor details.
+* **VisitorLog**: Tracks visitor check-in/check-out activity.
 
 ## Getting Started
 
 ### Prerequisites
 
-- JDK 17 or higher
-- Maven
+* JDK 17 or higher
+* Maven
 
 ### Installation
 
 1. **Clone the repository**
-```
+
+```bash
 git clone https://github.com/Savya-lol/Visitor-management-System.git
 ```
+
 2. **Navigate to the project directory**
+
+```bash
+cd Visitor-management-System
 ```
-cd visitor-management-system
-```
+
 3. **Build the project**
-```
+
+```bash
 mvn clean install
 ```
-4. **Create an admin user (if first time setup)**
-```
+
+4. **Create an admin user (first-time setup only)**
+
+```bash
 java -cp target/visitor-management-system-1.0-SNAPSHOT.jar com.savya.utilities.setup.AdminCreator
 ```
+
 5. **Run the application**
-```
+
+```bash
 java -cp target/visitor-management-system-1.0-SNAPSHOT.jar com.savya.Main
 ```
+
 ## Usage
 
-- **Log in with credentials**
-  - **Default admin:** 
-    - Username: `admin`
-    - Password: `password`
-- Use the numbered menu to select commands based on your role.
-
-## Project Structure
-
-```com.savya
-├── auth             - Authentication services
-├── commands         - Command pattern implementation
-│   ├── admin        - Admin-specific commands
-│   ├── common       - Commands available to all roles
-│   └── receptionist - Receptionist-specific commands
-├── database         - Database access layer
-│   ├── dao          - Data Access Objects
-│   └── entities     - Database entities
-├── rbac             - Role-based access control
-├── security         - Security services
-├── services         - Business logic services
-└── utilities        - Utility classes
-    ├── setup        - Setup utilities
-    └── sorting      - Sorting algorithms
-```
-
-## Security
-
-The system uses **PBKDF2 with HMAC SHA-256** for secure password storage, including salting and iterations to prevent brute force attacks.
+1. **Log in** with your credentials
