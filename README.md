@@ -88,7 +88,7 @@ mvn clean package
 4. **Create an admin user (first-time setup only)**
 
 ```bash
-java -jar target/visitor-management-system-1.0-SNAPSHOT.jar
+java -jar visitor-management-system-1.0-SNAPSHOT.jar --init-admin
 ```
 
 > ⚠️ Run the admin creation step **only once**. Running it multiple times may duplicate or overwrite admin records.
@@ -96,7 +96,7 @@ java -jar target/visitor-management-system-1.0-SNAPSHOT.jar
 5. **Run the application**
 
 ```bash
-java -jar target/visitor-management-system-1.0-SNAPSHOT.jar
+java -jar visitor-management-system-1.0-SNAPSHOT.jar
 ```
 
 ## Usage
