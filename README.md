@@ -54,7 +54,7 @@ The system uses three main entities:
 
 1. **Clone the repository**
 ```
-git clone https://github.com/yourusername/visitor-management-system.git
+git clone https://github.com/Savya-lol/Visitor-management-System.git
 ```
 2. **Navigate to the project directory**
 ```
