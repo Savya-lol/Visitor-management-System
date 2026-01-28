@@ -42,7 +42,7 @@ The Visitor Management System helps organizations track and manage visitors effi
 ### Tech Stack
 
 * **Java 17**
-* **Hibernate ORM**
+* **Hibernate ORM (6.x)**
 * **SQLite**
 * **Maven**
 
@@ -55,6 +55,10 @@ The system uses three main entities:
 * **VisitorLog**: Tracks visitor check-in/check-out activity.
 
 ## Getting Started
+
+> ⚠️ This project is packaged as a **fat (uber) JAR** using the **Maven Shade Plugin**.
+> All dependencies (Hibernate, SQLite, etc.) are bundled.
+> **Always run the application using `java -jar`.**
 
 ### Prerequisites
 
@@ -72,27 +76,42 @@ git clone https://github.com/Savya-lol/Visitor-management-System.git
 2. **Navigate to the project directory**
 
 ```bash
-cd Visitor-management-System
+cd Visitor-management-System/visistor-management-system
 ```
 
 3. **Build the project**
 
 ```bash
-cd visistor-management-system && mvn clean install
+mvn clean package
 ```
 
 4. **Create an admin user (first-time setup only)**
 
 ```bash
-java -cp target/visitor-management-system-1.0-SNAPSHOT.jar com.savya.utilities.setup.AdminCreator
+java -jar target/visitor-management-system-1.0-SNAPSHOT.jar
 ```
+
+> ⚠️ Run the admin creation step **only once**. Running it multiple times may duplicate or overwrite admin records.
 
 5. **Run the application**
 
 ```bash
-java -cp target/visitor-management-system-1.0-SNAPSHOT.jar com.savya.Main
+java -jar target/visitor-management-system-1.0-SNAPSHOT.jar
 ```
 
 ## Usage
 
 1. **Log in** with your credentials
+
+* Use the admin account created during first-time setup.
+* Admins can manage receptionist users.
+* Receptionists can manage visitor entries and logs.
+
+## Notes
+
+* The application uses SQLite by default. The database file will be created automatically on first run.
+* Hibernate schema generation is handled at startup.
+
+## License
+
+This project is provided for educational purposes.
