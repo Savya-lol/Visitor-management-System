@@ -78,7 +78,7 @@ cd Visitor-management-System
 3. **Build the project**
 
 ```bash
-mvn clean install
+cd visistor-management-system && mvn clean install
 ```
 
 4. **Create an admin user (first-time setup only)**
